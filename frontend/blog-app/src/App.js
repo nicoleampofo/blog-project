@@ -1,21 +1,22 @@
 import React from 'react';
-import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PostPage from './pages/PostPage';
 import NewPostPage from './pages/NewPostPage';
-import NavBar from './components/Navbar';
+import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <NavBar />
+      <Navbar />
       <Routes>
-        <Route path='/' element={<HomePage/>} />
-        <Route path='/posts/new' element={<NewPostPage/>} />
-        <Route path='/posts/:id' element={<PostPage/>} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/posts/new' element={<NewPostPage />} />
+        <Route path='/posts/:id' element={<PostPage />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
