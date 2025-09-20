@@ -9,7 +9,7 @@ const HomePage = () => {
       useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const res = await fetch(`/posts`);
+            const res = await fetch(`http://localhost:5500/posts`);
             const data = await res.json();
             setPosts(data);
           } catch (error) {
@@ -21,7 +21,7 @@ const HomePage = () => {
 
     const handleDelete = async(id) => {
         try {
-          const res = await fetch(`/posts/${id}`);
+          const res = await fetch(`http://localhost:5500/posts/${id}`);
           const data = await res.json();
           console.log(data)
         } catch (error) {

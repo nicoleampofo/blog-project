@@ -55,12 +55,12 @@ const NewPostPage = () => {
 
           <Form.Group>
             <Form.Label>Image URL</Form.Label>
-            <Form.Control type="image" name="Inage URL" placeholder='Title' onChange={handleChange}/>
+            <Form.Control type="text" name="image" placeholder='Image URL' onChange={handleChange}/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Content</Form.Label>
-            <Form.Control type="textarea" rows={3} name="content" placeholder='Content' onChange={handleChange}/>
+            <Form.Control as="textarea" rows={3} name="content" placeholder='Content' onChange={handleChange}/>
           </Form.Group>
 
           <Button variant="primary" type="submit">

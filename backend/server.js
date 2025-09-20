@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const PORT = 5500;
 require('dotenv').config();
 
 const app = express()
@@ -33,9 +32,9 @@ app.get('/posts', async (req, res) => {
 })
 
 // Get one post
-app.get('/posts/id', async (req, res) => {
-    const posts = await Post.findById;
-    res.send(posts)
+app.get('/posts/:id', async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.send(post)
 })
 
 // Create new post
@@ -46,7 +45,7 @@ app.post('/posts', async (req, res) => {
     // save this in the database, to write it and save it to the db
     const savedPost = await newPost.save()
     // send the result back to the front end
-    res.send(posts)
+    res.send(savedPost)
 })
 
 // Delete post
@@ -57,6 +56,6 @@ app.delete('/posts/:id', async (req, res) => {
 })
 
 // spin up the server and see if it works
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(5500, () => {
+    console.log('Server is running on port 5500')
 })
