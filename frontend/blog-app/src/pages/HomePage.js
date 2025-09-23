@@ -29,16 +29,25 @@ const HomePage = () => {
         }
     }
 
-      return (
+    return (
+
     <Container>
       <Row>
         {posts.map((post) => (
-          <Col md={4} className="mb-4" key={post._id}>
-            <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={post.image} alt={post.title} />
+          <Col md={4} className="mb-4, mt-4" key={post._id}>
+            <Card style={{ width: '18rem'}}>
+              <Card.Img
+                variant="top"
+                src={post.image}
+                alt={post.title} />
               <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Card.Text>By: {post.author}</Card.Text>
+                {post.title.length<31 ? (
+                  <Card.Title>{post.title}</Card.Title>
+                ): (
+                  <Card.Title>{post.title.slice(0, 31) + `...`}</Card.Title>
+                )}
+
+                <Card.Text maxLength={50}>By: {post.author}</Card.Text>
                 <Link to={`/posts/${post._id}`}>
                   <Button variant="primary" className="mr-2">Read More</Button>
                 </Link>
