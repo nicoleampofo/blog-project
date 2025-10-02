@@ -35,6 +35,13 @@ const NewPostPage = () => {
         await axios.post('http://localhost:5500/posts', post)
         navigate('/')
     }
+    function validateImgUrl() {
+      if (post.image.includes('http')){
+       console.log("Is that MY voice?");
+      } else {
+        console.log("That IS my voice; no http")
+      }
+    }
 
     // add Bootstrap that works with React
     return(
@@ -54,8 +61,9 @@ const NewPostPage = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Image URL</Form.Label>
-            <Form.Control type="text" name="image" placeholder='Image URL' onChange={handleChange} required/>
+            <Form.Label>Image URL (Must begin with "http:)</Form.Label>
+            <Form.Control type="text" name="image" placeholder='Image URL' onChange={handleChange}
+            required/>
           </Form.Group>
 
           <Form.Group>
@@ -63,7 +71,13 @@ const NewPostPage = () => {
             <Form.Control as="textarea" rows={3} name="content" placeholder='Content' onChange={handleChange} required/>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            onSubmit={() => {
+              validateImgUrl()
+            }}
+          >
             Submit New Post
           </Button>
 

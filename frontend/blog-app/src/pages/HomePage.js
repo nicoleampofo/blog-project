@@ -21,9 +21,8 @@ const HomePage = () => {
 
     const handleDelete = async(id) => {
         try {
-          const res = await fetch(`http://localhost:5500/posts/${id}`);
-          const data = await res.json();
-          console.log(data)
+          await fetch(`http://localhost:5500/posts/${id}`);
+          setPosts(posts.filter((post) => post._id !== id));
         } catch (error) {
           console.log('Error', error)
         }
@@ -39,7 +38,9 @@ const HomePage = () => {
               <Card.Img
                 variant="top"
                 src={post.image}
-                alt={post.title} />
+                alt={post.title}
+                style={{ height: '190px'}}
+              />
               <Card.Body>
                 {post.title.length<31 ? (
                   <Card.Title>{post.title}</Card.Title>
@@ -47,11 +48,16 @@ const HomePage = () => {
                   <Card.Title>{post.title.slice(0, 31) + `...`}</Card.Title>
                 )}
 
-                <Card.Text maxLength={50}>By: {post.author}</Card.Text>
+                <Card.Text maxLength={50}>
+                  By: {post.author}
+                </Card.Text>
                 <Link to={`/posts/${post._id}`}>
                   <Button variant="primary" className="mr-2">Read More</Button>
                 </Link>
-                <Button variant="danger" onClick={() => handleDelete(post._id)}>Delete</Button>
+                <Button variant="success" className="mr-2">Edit</Button>
+                <Button variant="danger" onClick={() => handleDelete(post._id)}>
+                  Delete
+                </Button>
               </Card.Body>
             </Card>
           </Col>

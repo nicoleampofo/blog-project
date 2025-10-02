@@ -15,7 +15,7 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
         try {
-            const res = await fetch(`/posts/${id}`);
+            const res = await fetch(`http://localhost:5500/posts/${id}`);
             const data = await res.json();
             setPost(data);
         } catch (error) {
@@ -29,7 +29,13 @@ const PostPage = () => {
     <Container className="mt-4">
       <Card>
         <div style={{ maxHeight: '500px', overflow: 'hidden' }}>
-          <Card.Img className="img-fluid" variant="top" src={post.image} alt={post.title} />
+          <Card.Img
+            className="img-fluid"
+            variant="top"
+            src={post.image}
+            alt={post.title}
+            isValid="value.includes('http')"
+            />
         </div>
         <Card.Body>
           <Card.Title>{post.title}</Card.Title>
