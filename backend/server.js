@@ -55,6 +55,29 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(200).send('Post has been deleted')
 })
 
+// Edit post
+app.route('/edit/:id')
+    .get(async (req, res) => {
+        const post = await Post.findById(req.params.id);
+        res.send(post)
+    }
+)
+    .post((req, res) => {
+        Post.findByIdAndUpdate(id,
+            {
+                title: req.body.title,
+                author: req.body.author,
+                image: req.body.image,
+                content: req.body.content
+            })
+        res.send('Item has been edited')
+    },
+    err => {
+            if (err) return res.status(500).send(err);
+            res.redirect("/");
+            }
+)
+
 // spin up the server and see if it works
 app.listen(5500, () => {
     console.log('Server is running on port 5500')
