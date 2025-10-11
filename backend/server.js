@@ -55,28 +55,20 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(200).send('Post has been deleted')
 })
 
-// Edit post
-app.route('/edit/:id')
-    .get(async (req, res) => {
-        const post = await Post.findById(req.params.id);
-        res.send(post)
-    }
-)
-    .post((req, res) => {
-        Post.findByIdAndUpdate(id,
-            {
-                title: req.body.title,
-                author: req.body.author,
-                image: req.body.image,
-                content: req.body.content
-            })
-        res.send('Item has been edited')
-    },
-    err => {
-            if (err) return res.status(500).send(err);
-            res.redirect("/");
-            }
-)
+// Edit post (RESTful: PUT /posts/:id)
+app.put('/posts/:id', async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      author: req.body.author,
+      image: req.body.image,
+      content: req.body.content
+    });
+    res.status(200).send('Post updated');
+  } catch (err) {
+    console.log('server.js error: ', err);
+  }
+});
 
 // spin up the server and see if it works
 app.listen(5500, () => {

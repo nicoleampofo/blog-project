@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PostPage from './pages/PostPage';
 import NewPostPage from './pages/NewPostPage';
+import EditPostPage from './pages/EditPostPage';
 import Navbar from './components/Navbar';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/posts/new' element={<NewPostPage />} />
+        <Route path='/posts/:id/edit' element={<EditPostPage />} />
         <Route path='/posts/:id' element={<PostPage />} />
       </Routes>
     </Router>

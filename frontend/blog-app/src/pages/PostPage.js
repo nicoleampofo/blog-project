@@ -34,7 +34,6 @@ const PostPage = () => {
             variant="top"
             src={post.image}
             alt={post.title}
-            isValid="value.includes('http')"
             />
         </div>
         <Card.Body>

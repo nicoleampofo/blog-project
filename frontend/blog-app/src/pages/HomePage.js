@@ -31,6 +31,7 @@ const HomePage = () => {
     return (
 
     <Container>
+      <h1 className="mt-5, text-center">Blog Posts</h1>
       <Row>
         {posts.map((post) => (
           <Col md={4} className="mb-4, mt-4" key={post._id}>
@@ -54,7 +55,9 @@ const HomePage = () => {
                 <Link to={`/posts/${post._id}`}>
                   <Button variant="primary" className="mr-2">Read More</Button>
                 </Link>
-                <Button variant="success" className="mr-2">Edit</Button>
+                <Link to={`/posts/${post._id}/edit`}>
+                  <Button variant="success" className="mr-2">Edit</Button>
+                </Link>
                 <Button variant="danger" onClick={() => handleDelete(post._id)}>
                   Delete
                 </Button>
